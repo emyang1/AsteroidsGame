@@ -2,8 +2,6 @@ Spaceship ship = new Spaceship();
 Star[] star = new Star[500];
 public void setup() {
   size(500, 500);
-  ship.setXspeed(0);
-  ship.setYspeed(0);
   for(int i = 0; i<star.length; i++){
     star[i] = new Star();
   }
