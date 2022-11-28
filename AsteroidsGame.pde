@@ -37,5 +37,6 @@ public void keyReleased(){
       ship.setYspeed(0);
       ship.setCenterX((int)(Math.random()*500));
       ship.setCenterY((int)(Math.random()*500));
+      ship.setDirection((int)(Math.random()*360));
     }
 }
