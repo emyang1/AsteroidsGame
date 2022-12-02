@@ -6,7 +6,7 @@ public void setup() {
   for(int i = 0; i<star.length; i++){
     star[i] = new Star();
   }
-  for(int i = 0; i<ast.size(); i++){
+  for(int i = 0; i<20; i++){
     ast.add(new Asteroid());
   }
 }
