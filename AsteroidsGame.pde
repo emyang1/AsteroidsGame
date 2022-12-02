@@ -1,9 +1,13 @@
 Spaceship ship = new Spaceship();
+ArrayList <Asteroid> ast = new ArrayList <Asteroid>();
 Star[] star = new Star[500];
 public void setup() {
   size(500, 500);
   for(int i = 0; i<star.length; i++){
     star[i] = new Star();
+  }
+  for(int i = 0; i<ast.size(); i++){
+    ast.add(new Asteroid());
   }
 }
 
@@ -11,6 +15,10 @@ public void draw() {
   background(0);  
   for(int i = 0; i<star.length; i++){
     star[i].show();
+  }
+  for(int i = 0; i<20; i++){
+    ast.show();
+    ast.move();
   }
   if(keyPressed){
     if (key == CODED) {
