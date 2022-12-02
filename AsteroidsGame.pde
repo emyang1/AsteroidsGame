@@ -51,4 +51,11 @@ public void keyReleased() {
     ship.setCenterY((int)(Math.random()*500));
     ship.setDirection((int)(Math.random()*360));
   }
+  if (key == CODED) {
+    if(keyCode == SHIFT){
+      ast.add(ast.size()-1, new Asteroid()); 
+      ast.get(ast.size()-1).show();
+      ast.get(ast.size()-1).move();
+    }
+  }
 }
