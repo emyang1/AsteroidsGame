@@ -35,7 +35,7 @@ public void draw() {
         ship.turn(5);
       }
       if (keyCode == UP) {
-        ship.accelerate(0.2);
+        ship.accelerate(0.05);
       }
     }
   }
