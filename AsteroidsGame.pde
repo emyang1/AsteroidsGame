@@ -1,5 +1,6 @@
 Spaceship ship = new Spaceship();
 ArrayList <Asteroid> ast = new ArrayList <Asteroid>();
+ArrayList <Bullet> pew = new ArrayList <Bullet>();
 Star[] star = new Star[500];
 public void setup() {
   size(500, 500);
@@ -16,13 +17,32 @@ public void draw() {
   for (int i = 0; i<star.length; i++) {
     star[i].show();
   }
+  for (int i = 0; i<pew.size(); i++) {
+    pew.get(i).show();
+    pew.get(i).move();
+    if((pew.get(i).getCenterX() == 0 || pew.get(i).getCenterX() == 500)||
+    (pew.get(i).getCenterY() == 0 || pew.get(i).getCenterY() == 500)){
+      pew.remove(i);
+    }
+  }
   for (int i = 0; i<ast.size(); i++) {
     ast.get(i).show();
     ast.get(i).move();
     float d = dist((float)ship.getCenterX(), (float)ship.getCenterY(),
-    (float)ast.get(i).getCenterX(), (float)ast.get(i).getCenterY());
-    if(d < 20){
+      (float)ast.get(i).getCenterX(), (float)ast.get(i).getCenterY());
+    if (d < 20) {
       ast.remove(i);
+    }
+  }
+  for(int i = 0; i<pew.size(); i++){
+    for (int a = 0; a<ast.size(); a++) {
+      float b = dist((float)pew.get(i).getCenterX(), (float)pew.get(i).getCenterY(),
+        (float)ast.get(a).getCenterX(), (float)ast.get(a).getCenterY());
+       if(b<13){
+         ast.remove(a);
+         pew.remove(i);
+         break;
+       }
     }
   }
 
@@ -52,10 +72,20 @@ public void keyReleased() {
     ship.setDirection((int)(Math.random()*360));
   }
   if (key == CODED) {
-    if(keyCode == SHIFT){
-      ast.add(ast.size()-1, new Asteroid()); 
-      ast.get(ast.size()-1).show();
-      ast.get(ast.size()-1).move();
+    if (keyCode == SHIFT) {
+      if(ast.size()>0){
+        ast.add(ast.size()-1, new Asteroid());
+        ast.get(ast.size()-1).show();
+        ast.get(ast.size()-1).move();
+      }
+      else{
+        ast.add(ast.size(), new Asteroid());
+        ast.get(ast.size()-1).show();
+        ast.get(ast.size()-1).move();
+      }
     }
+  }
+  if (key == ' ') {
+    pew.add(new Bullet(ship));
   }
 }
